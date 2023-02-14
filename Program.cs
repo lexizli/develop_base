@@ -37,6 +37,10 @@ while (true)
 Array.Resize(ref arrayInput, arrayInput.Length - 1);
 
 WriteArray(arrayInput);
-Console.WriteLine("\nThese strings are shorter than 4 characters:");
 SelectOnlyThree(ref arrayInput, ref arrayOutput);
+if (arrayOutput.Length > 0) 
+{
+Console.WriteLine("\nThese strings are shorter than 4 characters:");
 WriteArray(arrayOutput);
+}
+else Console.WriteLine("\nSorry. No strings are shorter than 4 characters.");
