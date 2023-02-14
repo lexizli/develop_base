@@ -1,33 +1,42 @@
-﻿using System;
-
-/* selecting from array of strings only shorter then 4 characters */ 
+﻿/* selecting from array of strings only shorter then 4 characters */
 void SelectOnlyThree(ref string[] arrayInput, ref string[] arrayOutput)
 {
     int j = 0;
-    for (int i = 0; i < arrayInput.Length; i++)
+    foreach (string i in arrayInput)
     {
-        if(arrayInput[i].Length  < 4)
+        if (i.Length < 4)
         {
-            arrayOutput[j] = arrayInput[i];
+            arrayOutput[j] = i;
             Array.Resize(ref arrayOutput, arrayOutput.Length + 1);
             j++;
         }
     }
-
+    Array.Resize(ref arrayOutput, arrayOutput.Length - 1);
 }
 
 void WriteArray(string[] arrayInput)
 {
-    for (int i = 0; i < arrayInput.Length; i++)
-    {
-        Console.WriteLine(arrayInput[i]);
-    }
-
+    foreach (string i in arrayInput) Console.WriteLine(i);
 }
 
-//string[] arrayInput = new string[1];
+string[] arrayInput = new string[1];
 string[] arrayOutput = new string[1];
-string[] arrayInput = new string[] { "Sun", "Monday", "Tue", "Wednsday", "Thu", "Friday", "Sat" };
 
+Console.Clear();
+Console.WriteLine("Input some strings. For stop input empty string (press 'Enter' twice).");
+
+int k = 0;
+while (true)
+{
+    string? inString = Console.ReadLine();
+    if (string.IsNullOrEmpty(inString)) break;
+    arrayInput[k] = inString;
+    Array.Resize(ref arrayInput, arrayInput.Length + 1);
+    k++;
+}
+Array.Resize(ref arrayInput, arrayInput.Length - 1);
+
+WriteArray(arrayInput);
+Console.WriteLine("\nThese strings are shorter than 4 characters:");
 SelectOnlyThree(ref arrayInput, ref arrayOutput);
 WriteArray(arrayOutput);
